@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # StaffTrack — Employee Attendance, Shift & Leave Management System
 
 A GitHub-ready demo application based on the StaffTrack screen references. It includes a Flask web interface, SQLite persistence, six UI screenshots, three project-review presentations, and a quick-start guide.
@@ -65,3 +66,7 @@ StaffTrack-GitHub/
 
 ## Important scope note
 This is a small runnable demo aligned to the supplied screen references. It is not yet the complete 12-table database implementation described in the review slides; authentication, roster assignment, overtime workflows, leave-balance accounting, and the full set of seven SQL report views would need to be added for full parity with those deliverables. Do not use demo data for real employee records.
+=======
+# -A-DATABASE-MANAGEMENT-SYSTEM-FOR-EMPLOYEE-ATTENDANCE-SHIFT-AND-LEAVE-MANAGEMENT-SYSTEM
+A DBMS project to manage employee attendance, shifts, overtime, and leave balances. Features include roster scheduling, clock-in/out tracking, leave approvals, and attendance reports. Built using Python or Java with MySQL, PostgreSQL, or SQLite, ensuring data accuracy, integrity, and efficient management.
+>>>>>>> b7e73d7bfc4daade85cb0d77560bc86d6ac3da5d
