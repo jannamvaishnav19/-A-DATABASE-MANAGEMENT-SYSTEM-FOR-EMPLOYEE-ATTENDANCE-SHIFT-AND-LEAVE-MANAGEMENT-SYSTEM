@@ -1,0 +1,74 @@
+
+erDiagram
+    DEPARTMENTS ||--o{ EMPLOYEES : contains
+    EMPLOYEES ||--o{ ROSTERS : assigned
+    SHIFTS ||--o{ ROSTERS : schedules
+    EMPLOYEES ||--o{ ATTENDANCE : records
+    EMPLOYEES ||--o{ LEAVE_REQUESTS : submits
+    LEAVE_TYPES ||--o{ LEAVE_REQUESTS : categorizes
+    EMPLOYEES ||--o{ LEAVE_BALANCES : has
+    LEAVE_TYPES ||--o{ LEAVE_BALANCES : defines
+
+    DEPARTMENTS {
+        int id PK
+        string name UK
+    }
+
+    EMPLOYEES {
+        int id PK
+        string employee_code UK
+        string full_name
+        string email UK
+        int department_id FK
+        date hire_date
+        int active
+    }
+
+    SHIFTS {
+        int id PK
+        string name UK
+        time start_time
+        time end_time
+        int break_minutes
+    }
+
+    ROSTERS {
+        int id PK
+        int employee_id FK
+        int shift_id FK
+        date work_date
+    }
+
+    ATTENDANCE {
+        int id PK
+        int employee_id FK
+        date work_date
+        time clock_in
+        time clock_out
+        string status
+    }
+
+    LEAVE_TYPES {
+        int id PK
+        string name UK
+        int annual_days
+    }
+
+    LEAVE_BALANCES {
+        int employee_id PK, FK
+        int leave_type_id PK, FK
+        int year PK
+        int entitled_days
+        int used_days
+    }
+
+    LEAVE_REQUESTS {
+        int id PK
+        int employee_id FK
+        int leave_type_id FK
+        date start_date
+        date end_date
+        int days
+        string reason
+        string status
+    }
