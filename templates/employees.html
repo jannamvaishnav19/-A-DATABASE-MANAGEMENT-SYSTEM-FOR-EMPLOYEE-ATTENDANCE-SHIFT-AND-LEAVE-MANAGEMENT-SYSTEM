@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Employees · StaffTrack{% endblock %}
+{% block content %}<h2>Employee Management</h2>
+<section class="panel"><h3>Add employee</h3><form method="post" class="form-grid">
+<label>Employee code<input name="code" placeholder="EMP005" required></label>
+<label>Full name<input name="full_name" required></label>
+<label>Email<input name="email" type="email" required></label>
+<label>Department<select name="department"><option>Administration</option><option>Engineering</option><option>Production</option><option>Logistics</option><option>Security</option><option>HR</option></select></label>
+<label>Hire date<input name="hire_date" type="date" value="{{ today }}" required></label>
+<div class="form-action"><button>Add employee</button></div></form></section>
+<section class="panel"><h3>Employee records</h3><table><thead><tr><th>Code</th><th>Name</th><th>Email</th><th>Department</th><th>Hire date</th><th>Status</th></tr></thead><tbody>
+{% for e in employees %}<tr><td>{{ e.code }}</td><td>{{ e.full_name }}</td><td>{{ e.email }}</td><td>{{ e.department }}</td><td>{{ e.hire_date }}</td><td>{{ 'Active' if e.active else 'Inactive' }}</td></tr>
+{% else %}<tr><td colspan="6">No employees found.</td></tr>{% endfor %}
+</tbody></table></section>{% endblock %}
