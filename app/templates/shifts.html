@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}Shifts · StaffTrack{% endblock %}
+{% block content %}<h2>Shift Management</h2>
+<section class="panel"><h3>Define a shift</h3><form method="post" class="form-grid">
+<label>Shift name<input name="name" placeholder="General" required></label>
+<label>Start time<input name="start_time" type="time" required></label>
+<label>End time<input name="end_time" type="time" required></label>
+<label>Break (minutes)<input name="break_minutes" type="number" min="0" value="30" required></label>
+<div class="form-action"><button>Create shift</button></div></form></section>
+<section class="panel"><h3>Configured shifts</h3><table><thead><tr><th>Name</th><th>Start</th><th>End</th><th>Break</th></tr></thead><tbody>
+{% for s in shifts %}<tr><td>{{ s.name }}</td><td>{{ s.start_time }}</td><td>{{ s.end_time }}</td><td>{{ s.break_minutes }} min</td></tr>
+{% else %}<tr><td colspan="4">No shifts configured.</td></tr>{% endfor %}
+</tbody></table></section>{% endblock %}

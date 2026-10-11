@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Reports · StaffTrack{% endblock %}
+{% block content %}<h2>Reports</h2>
+<section class="panel"><h3>Attendance summary by month and status</h3><table><thead><tr><th>Month</th><th>Status</th><th>Records</th></tr></thead><tbody>
+{% for r in summary %}<tr><td>{{ r.month }}</td><td>{{ r.status }}</td><td>{{ r.records }}</td></tr>{% else %}<tr><td colspan="3">No attendance data available.</td></tr>{% endfor %}
+</tbody></table></section>
+<section class="panel"><h3>Leave request summary</h3><table><thead><tr><th>Employee</th><th>Leave type</th><th>Total requests</th><th>Approved</th></tr></thead><tbody>
+{% for r in leave_rows %}<tr><td>{{ r.code }} — {{ r.full_name }}</td><td>{{ r.leave_type or '—' }}</td><td>{{ r.requests or 0 }}</td><td>{{ r.approved or 0 }}</td></tr>{% endfor %}
+</tbody></table></section>{% endblock %}

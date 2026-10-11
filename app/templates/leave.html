@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Leave Requests · StaffTrack{% endblock %}
+{% block content %}<h2>Leave Management</h2>
+<section class="panel"><h3>Submit leave request</h3><form method="post" class="form-grid">
+<label>Employee<select name="employee_id" required>{% for e in employees %}<option value="{{ e.id }}">{{ e.code }} — {{ e.full_name }}</option>{% endfor %}</select></label>
+<label>Leave type<select name="leave_type"><option>Casual Leave</option><option>Earned Leave</option><option>Sick Leave</option></select></label>
+<label>Start date<input name="start_date" type="date" value="{{ today }}" required></label>
+<label>End date<input name="end_date" type="date" value="{{ today }}" required></label>
+<label class="wide">Reason<textarea name="reason" rows="2" required></textarea></label>
+<div class="form-action"><button>Submit request</button></div></form></section>
+<section class="panel"><h3>Requests and approvals</h3><table><thead><tr><th>Employee</th><th>Type</th><th>Dates</th><th>Reason</th><th>Status</th><th>Action</th></tr></thead><tbody>
+{% for r in requests %}<tr><td>{{ r.code }} — {{ r.full_name }}</td><td>{{ r.leave_type }}</td><td>{{ r.start_date }} to {{ r.end_date }}</td><td>{{ r.reason }}</td><td><span class="status {{ r.status|lower }}">{{ r.status }}</span></td><td>{% if r.status == 'Pending' %}<form class="inline" method="post" action="{{ url_for('main.decide_leave',request_id=r.id,decision='Approved') }}"><button class="small">Approve</button></form> <form class="inline" method="post" action="{{ url_for('main.decide_leave',request_id=r.id,decision='Rejected') }}"><button class="small danger">Reject</button></form>{% else %}—{% endif %}</td></tr>
+{% else %}<tr><td colspan="6">No leave requests found.</td></tr>{% endfor %}
+</tbody></table></section>{% endblock %}

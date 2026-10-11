@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}StaffTrack{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="site-header"><div class="header-inner">
+  <h1>StaffTrack</h1><p>Employee Attendance, Shift &amp; Leave Management System</p>
+</div></header>
+<nav><div class="nav-inner">
+  <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('main.employees') }}">Employees</a>
+  <a href="{{ url_for('main.shifts') }}">Shifts</a>
+  <a href="{{ url_for('main.attendance') }}">Attendance</a>
+  <a href="{{ url_for('main.leave') }}">Leave Requests</a>
+  <a href="{{ url_for('main.reports') }}">Reports</a>
+</div></nav>
+<main>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+  <p class="footnote">StaffTrack demo application. Data is stored locally in SQLite.</p>
+</main>
+</body></html>
